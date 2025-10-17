@@ -376,6 +376,66 @@
             background: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
         }
+        /* ---- Chatbot Widget Styles ---- */
+        #chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #667eea;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            font-size: 26px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            z-index: 9999;
+        }
+
+        #chatbot-button:hover {
+            background-color: #5647d6;
+        }
+
+        #chatbot-container {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 380px;
+            height: 520px;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+            background-color: white;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 10000;
+        }
+
+        #chatbot-header {
+            background-color: #667eea;
+            color: white;
+            padding: 10px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+
+        #chatbot-header button {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        #chatbot-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -649,5 +709,35 @@
     <footer class="footer">
         <p>&copy; 2025 Phanees Mudiganti. All rights reserved. | Available for immediate opportunities in Enterprise Architecture and Cloud Solutions</p>
     </footer>
+    <!-- Floating Chatbot Widget -->
+    <button id="chatbot-button" title="Chat with my Digital Assistant">💬</button>
+
+    <div id="chatbot-container">
+        <div id="chatbot-header">
+            <span>Digital Assistant</span>
+            <button id="chatbot-close">✖</button>
+        </div>
+        <iframe id="chatbot-iframe"
+                src="https://phanees-digitalassistant.hf.space"
+                allow="microphone; camera"
+                title="Phanees Digital Assistant">
+        </iframe>
+    </div>
+
+    <script>
+        const chatbotBtn = document.getElementById("chatbot-button");
+        const chatbotContainer = document.getElementById("chatbot-container");
+        const chatbotClose = document.getElementById("chatbot-close");
+
+        chatbotBtn.addEventListener("click", () => {
+            chatbotContainer.style.display = "flex";
+            chatbotBtn.style.display = "none";
+        });
+
+        chatbotClose.addEventListener("click", () => {
+            chatbotContainer.style.display = "none";
+            chatbotBtn.style.display = "block";
+        });
+    </script>
 </body>
 </html>
