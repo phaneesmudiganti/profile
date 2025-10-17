@@ -376,88 +376,127 @@
             background: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
         }
-        /* Floating Chatbot Styles */
-#chatbot-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #667eea;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
-    font-size: 26px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    z-index: 9999;
-}
-
-#chatbot-button:hover {
-    background-color: #5647d6;
-}
-
-#chatbot-container {
-    position: fixed;
-    bottom: 90px;
-    right: 20px;
-    width: 380px;
-    height: 520px;
-    border-radius: 12px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-    background-color: white;
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 10000;
-}
-
-/* Fixed Header */
-#chatbot-header {
-    background-color: #667eea;
-    color: white;
-    padding: 10px 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    flex-shrink: 0;
-}
-
-#chatbot-header button {
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-/* Chat area (iframe + welcome) should fill remaining height */
-#chatbot-iframe, #chatbot-welcome {
-    border: none;
-    width: 100%;
-    height: calc(100% - 45px); /* leave space for header */
-}
-
-/* Welcome message styling */
-#chatbot-welcome {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 15px;
-    color: #333;
-    background: linear-gradient(135deg, #f9f9ff, #eef1ff);
-    padding: 20px;
-    animation: fadeIn 0.8s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+         /* Floating chat button */
+          #chatbot-button {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: #6a5acd;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            font-size: 26px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+          }
+          #chatbot-button:hover {
+            background-color: #7a6ee0;
+          }
+        
+          /* Chat window container */
+          #chatbot-container {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 380px;
+            height: 520px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 9999;
+            animation: fadeIn 0.3s ease;
+          }
+        
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+        
+          /* Header bar */
+          #chatbot-header {
+            background: #6a5acd;
+            color: white;
+            padding: 10px 16px;
+            font-weight: bold;
+            font-size: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+        
+          #chatbot-header button {
+            background: transparent;
+            color: white;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+          }
+        
+          /* Iframe for Hugging Face chatbot */
+          #chatbot-iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+            flex-grow: 1;
+          }
+        
+          /* Welcome overlay */
+          #chatbot-welcome {
+            position: absolute;
+            top: 45px;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 45px);
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-family: sans-serif;
+            color: #333;
+            z-index: 10000;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+          }
+        
+          #chatbot-welcome p {
+            font-size: 15px;
+            margin-bottom: 10px;
+          }
+        
+          #chatbot-welcome span {
+            font-weight: bold;
+            color: #6a5acd;
+          }
+        
+          /* Responsive design for smaller screens */
+          @media (max-width: 600px) {
+            #chatbot-container {
+              width: 100%;
+              height: 100%;
+              bottom: 0;
+              right: 0;
+              border-radius: 0;
+            }
+            #chatbot-button {
+              bottom: 16px;
+              right: 16px;
+              width: 54px;
+              height: 54px;
+              font-size: 24px;
+            }
+          }
 
     </style>
 </head>
@@ -733,55 +772,49 @@
         <p>&copy; 2025 Phanees Mudiganti. All rights reserved. | Available for immediate opportunities in Enterprise Architecture and Cloud Solutions</p>
     </footer>
    <!-- Floating Chatbot Widget -->
-        <button id="chatbot-button" title="Chat with my Digital Assistant">💬</button>
-        
-        <div id="chatbot-container">
-            <div id="chatbot-header">
-                <span>Digital Assistant</span>
-                <button id="chatbot-close">✖</button>
-            </div>
-        
-            <!-- Welcome message -->
-            <div id="chatbot-welcome">
-                👋 Hello! I’m Phanees’ Digital Assistant.<br>
-                Ask me anything about his profile, experience, or projects!
-            </div>
-        
-            <!-- Embedded chatbot -->
-            <iframe id="chatbot-iframe"
-                    src="https://phanees-digitalassistant.hf.space"
-                    allow="microphone; camera"
-                    title="Phanees Digital Assistant">
-            </iframe>
-        </div>
-        
-       <script>
-    const chatbotBtn = document.getElementById("chatbot-button");
-    const chatbotContainer = document.getElementById("chatbot-container");
-    const chatbotClose = document.getElementById("chatbot-close");
-    const chatbotIframe = document.getElementById("chatbot-iframe");
-    const chatbotWelcome = document.getElementById("chatbot-welcome");
+  <div id="chatbot-container">
+  <div id="chatbot-header">
+    <span>Digital Assistant</span>
+    <button id="chatbot-close">&times;</button>
+  </div>
 
-    chatbotBtn.addEventListener("click", () => {
-        chatbotContainer.style.display = "flex";
-        chatbotBtn.style.display = "none";
+  <iframe
+    id="chatbot-iframe"
+    src="https://phanees-digitalassistant.hf.space"
+    allow="microphone; camera"
+    title="Phanees Digital Assistant">
+  </iframe>
 
-        // Show welcome message for 3 seconds, then switch to chatbot
-        chatbotWelcome.style.display = "flex";
-        chatbotIframe.style.display = "none";
-        setTimeout(() => {
-            chatbotWelcome.style.display = "none";
-            chatbotIframe.style.display = "block";
-        }, 3000);
-    });
+  <div id="chatbot-welcome">
+    <p>👋 Hello! I’m your <span>Digital Assistant</span>.</p>
+    <p>I can answer questions about <b>Phanees Mudiganti’s</b> experience and profile.</p>
+  </div>
+</div>
 
-    chatbotClose.addEventListener("click", () => {
-        chatbotContainer.style.display = "none";
-        chatbotBtn.style.display = "block";
-        chatbotIframe.style.display = "none";
-        chatbotWelcome.style.display = "none";
-    });
+<button id="chatbot-button" title="Chat with Phanees’s Assistant">💬</button>
+
+<script>
+  const chatbotButton = document.getElementById("chatbot-button");
+  const chatbotContainer = document.getElementById("chatbot-container");
+  const chatbotClose = document.getElementById("chatbot-close");
+  const chatbotWelcome = document.getElementById("chatbot-welcome");
+
+  chatbotButton.addEventListener("click", () => {
+    chatbotContainer.style.display = "flex";
+    chatbotButton.style.display = "none";
+
+    // Show welcome overlay briefly
+    chatbotWelcome.style.display = "flex";
+    setTimeout(() => {
+      chatbotWelcome.style.opacity = "0";
+      setTimeout(() => (chatbotWelcome.style.display = "none"), 500);
+    }, 2500);
+  });
+
+  chatbotClose.addEventListener("click", () => {
+    chatbotContainer.style.display = "none";
+    chatbotButton.style.display = "flex";
+  });
 </script>
-
 </body>
 </html>
